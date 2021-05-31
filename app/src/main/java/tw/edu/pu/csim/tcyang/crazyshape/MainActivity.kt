@@ -33,7 +33,8 @@ class MainActivity : AppCompatActivity() {
             override fun onLongClick(p0: View?): Boolean {
                 intent = Intent(this@MainActivity, GameActivity::class.java).apply {
                     putExtra("shapes",Flag) }
-                startActivity(intent)
+                //startActivity(intent)
+                startActivityForResult(intent, 99)
                 return true
             }
         })
@@ -50,6 +51,14 @@ class MainActivity : AppCompatActivity() {
             2 -> imgNext.setImageResource(R.drawable.square)
             3 -> imgNext.setImageResource(R.drawable.star)
             4 -> imgNext.setImageResource(R.drawable.triangle)
+        }
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 99){
+            intent = Intent(this@MainActivity, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 }

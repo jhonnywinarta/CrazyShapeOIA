@@ -1,6 +1,7 @@
 package tw.edu.pu.csim.tcyang.crazyshape
 
 import android.content.Intent
+import android.graphics.drawable.shapes.Shape
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -12,16 +13,20 @@ import kotlinx.android.synthetic.main.activity_main.*
 @GlideModule
 class MyAppGlideModule : AppGlideModule()
 
+var Flag:Int=0
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        shape()
+
         Toast.makeText(baseContext, "作者：楊子青", Toast.LENGTH_LONG).show()
 
         GlideApp.with(this)
             .load(R.drawable.cover)
-            .override(800,600)
+            .override(800, 600)
             .into(imgTitle)
 
         imgNext.setOnLongClickListener(object : View.OnLongClickListener {
@@ -31,5 +36,19 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
         })
+        imgNext.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                shape()
+            }
+        })
+    }
+    fun shape() {
+        Flag = (1..4).random()
+        when (Flag) {
+            1 -> imgNext.setImageResource(R.drawable.circle)
+            2 -> imgNext.setImageResource(R.drawable.square)
+            3 -> imgNext.setImageResource(R.drawable.star)
+            4 -> imgNext.setImageResource(R.drawable.triangle)
+        }
     }
 }

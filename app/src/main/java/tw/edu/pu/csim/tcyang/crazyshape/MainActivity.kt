@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         shape()
 
-        Toast.makeText(baseContext, "作者：楊子青", Toast.LENGTH_LONG).show()
+        Toast.makeText(baseContext, "作者：黃裕洳", Toast.LENGTH_LONG).show()
 
         GlideApp.with(this)
             .load(R.drawable.cover)
@@ -31,7 +31,8 @@ class MainActivity : AppCompatActivity() {
 
         imgNext.setOnLongClickListener(object : View.OnLongClickListener {
             override fun onLongClick(p0: View?): Boolean {
-                intent = Intent(this@MainActivity, GameActivity::class.java)
+                intent = Intent(this@MainActivity, GameActivity::class.java).apply {
+                    putExtra("shapes",Flag) }
                 startActivity(intent)
                 return true
             }
